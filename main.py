@@ -1,16 +1,13 @@
-# This is a sample Python script.
+from parse_cookie import parse_cookie
+from parse_url_params import parse
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+print(parse_cookie('name=Dima;'))  # {'name': 'Dima'}
+print(parse_cookie(''))  # {}
+print(parse_cookie('name=Dima;age=28;'))  # {'name': 'Dima', 'age': '28'}
+print(parse_cookie('name=Dima=User;age=28;'))  # {'name': 'Dima=User', 'age': '28'}
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(parse('https://example.com/path/to/page?name=ferret&color=purple')) # {'name': 'ferret', 'color': 'purple'}
+print(parse('https://example.com/path/to/page?name=ferret&color=purple&')) # {'name': 'ferret', 'color': 'purple'}
+print(parse('http://example.com/')) # {}
+print(parse('http://example.com/?')) # {}
+print(parse('http://example.com/?name=Dima')) # {'name': 'Dima'}
